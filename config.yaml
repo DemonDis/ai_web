@@ -6,12 +6,7 @@ model_list:
       api_base: https://ваш-альтернативный-api.com/v1
 
   # Ollama (локально)
-  # - model_name: llama3
+  # - model_name: deepseek-r1:1.5b
   #   litellm_params:
-  #     model: ollama/llama3
-  #     api_base: http://host.docker.internal:11434
-
-  # - model_name: phi3
-  #   litellm_params:
-  #     model: ollama/phi3
+  #     model: ollama/deepseek-r1:1.5b
   #     api_base: http://host.docker.internal:11434
