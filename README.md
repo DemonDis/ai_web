@@ -42,8 +42,8 @@ docker pull ghcr.io/open-webui/open-webui:main
 
 ## Запуск Open WebUI в Docker
 Необходимо подождать, запуск занимает время
+- Без OLLAMA
 ```bash
-# Без OLLAMA
 docker run -d \
   --add-host=host.docker.internal:host-gateway \
   -p 3002:8080 \
@@ -54,13 +54,26 @@ docker run -d \
   --name open-webui \
   --restart always \
   ghcr.io/open-webui/open-webui:main
-  # OLLAMA
-  ```
+```
+
+- С OLLAMA
+```bash
+docker run -d \
+  --add-host=host.docker.internal:host-gateway \
+  -p 3002:8080 \
+  -e OPENAI_API_BASE_URL="http://host.docker.internal:8000" \
+  -e OPENAI_API_KEY="any" \
+  -e OLLAMA_BASE_URL=http://none \
+  -v open-webui:/app/backend/data \
+  --name open-webui \
+  --restart always \
+  ghcr.io/open-webui/open-webui:main
+```
 
 ## Скачивание образа Ollama
 ```bash
 docker pull ollama/ollama
-```
+
 
 ## Запуск Ollama в Docker
 ```bash
@@ -99,12 +112,17 @@ curl URL_МОДЕЛИ \
 
 ## Информация о дисковом пространстве
 ```bash
+docker system df
+```
+- Результат запроса (без Ollama)
+```bash
 TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE
-Images          4         2         13.65GB   6.653GB (48%)
-Containers      2         2         41.89MB   0B (0%)
-Local Volumes   2         2         7.223GB   0B (0%)
+Images          1         1         4.803GB   0B (0%)
+Containers      1         1         41.88MB   0B (0%)
+Local Volumes   1         1         1.998GB   0B (0%)
 Build Cache     0         0         0B        0B
 ```
+
 ## API должен быть совместим с OpenAI
 Пример запроса к /chat/completions (как у OpenAI):
 ```bash
