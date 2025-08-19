@@ -18,7 +18,7 @@ docker compose up -d --build
 ```bash
 docker-compose down
 # or
-docker-compose down
+docker compose down
 ```
 
 # ВАРИНАТ 2 - ручной/docker
