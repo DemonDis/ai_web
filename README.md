@@ -1,7 +1,7 @@
 # Инструкция по запуску Open WebUI (LINUX)
-**Open WebUI**: Веб-интерфейс для запуска и управления большими языковыми моделями.  
-**Ollama**: Инструмент для простого запуска LLM локально.  
-**LiteLLM**: Универсальный прокси для работы с различными LLM API.  
+**[Open WebUI](https://docs.openwebui.com/)**: Веб-интерфейс для запуска и управления большими языковыми моделями.  
+**[Ollama](https://ollama.com/)**: Инструмент для простого запуска LLM локально.  
+**[LiteLLM](https://docs.litellm.ai/docs/tutorials/openweb_ui)**: Универсальный прокси для работы с различными LLM API.  
 
 - Open WebUI - `http://localhost:3002`
 - Ollama - `http://localhost:11434`
