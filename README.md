@@ -105,6 +105,50 @@ Containers      2         2         41.89MB   0B (0%)
 Local Volumes   2         2         7.223GB   0B (0%)
 Build Cache     0         0         0B        0B
 ```
+## API должен быть совместим с OpenAI
+Пример запроса к /chat/completions (как у OpenAI):
+```bash
+POST /v1/chat/completions
+Headers:
+  "Content-Type": "application/json"
+  "Authorization": "Bearer your-api-key"
+
+Body:
+{
+  "model": "gpt-3.5-turbo",  // или другая модель (например, "llama3-70b")
+  "messages": [
+    {"role": "system", "content": "Ты полезный ассистент."},
+    {"role": "user", "content": "Привет! Как дела?"}
+  ],
+  "temperature": 0.7,
+  "max_tokens": 100
+}
+```
+
+Пример успешного ответа:
+```bash
+{
+  "id": "chatcmpl-123",
+  "object": "chat.completion",
+  "created": 1677652288,
+  "model": "gpt-3.5-turbo",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Привет! У меня всё отлично, спасибо! Как ваши дела?"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 15,
+    "completion_tokens": 20,
+    "total_tokens": 35
+  }
+}
+```
 
   ### Технологический стек
 - **Python**: 3.10.12

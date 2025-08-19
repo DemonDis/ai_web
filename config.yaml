@@ -3,4 +3,4 @@ model_list:
     litellm_params:
       model: openai/gpt-4o-mini
       api_key: ВАШ_КЛЮЧ
-      api_base: URL_МОДЕЛИ
+      api_base: https://ваш-альтернативный-api.com/v1
