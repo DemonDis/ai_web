@@ -1,4 +1,4 @@
-# Инструкция по запуску Open WebUI
+# Инструкция по запуску Open WebUI (LINUX)
 **Open WebUI**: Веб-интерфейс для запуска и управления большими языковыми моделями.  
 **Ollama**: Инструмент для простого запуска LLM локально.  
 **LiteLLM**: Универсальный прокси для работы с различными LLM API.  
@@ -43,6 +43,7 @@ docker pull ghcr.io/open-webui/open-webui:main
 ## Запуск Open WebUI в Docker
 Необходимо подождать, запуск занимает время
 ```bash
+# Без OLLAMA
 docker run -d \
   --add-host=host.docker.internal:host-gateway \
   -p 3002:8080 \
@@ -53,6 +54,7 @@ docker run -d \
   --name open-webui \
   --restart always \
   ghcr.io/open-webui/open-webui:main
+  # OLLAMA
   ```
 
 ## Скачивание образа Ollama
