@@ -3,9 +3,9 @@
 **Ollama**: Инструмент для простого запуска LLM локально.  
 **LiteLLM**: Универсальный прокси для работы с различными LLM API.  
 
-- Open WebUI - http://localhost:3002
-- Ollama - http://localhost:11434
-- LiteLLM - http://localhost:8003
+- Open WebUI - `http://localhost:3002`
+- Ollama - `http://localhost:11434`
+- LiteLLM - `http://localhost:8003`
 
 ## Настройка окружения и запуск
 Создание виртуального окружения Python
@@ -73,7 +73,7 @@ docker run -d \
 ## Скачивание образа Ollama
 ```bash
 docker pull ollama/ollama
-
+```
 
 ## Запуск Ollama в Docker
 ```bash
@@ -124,7 +124,7 @@ Build Cache     0         0         0B        0B
 ```
 
 ## API должен быть совместим с OpenAI
-Пример запроса к /chat/completions (как у OpenAI):
+Пример запроса к `/chat/completions` (как у OpenAI):
 ```bash
 POST /v1/chat/completions
 Headers:
@@ -168,10 +168,9 @@ Body:
 }
 ```
 
-  ### Технологический стек
+### Технологический стек
 - **Python**: 3.10.12
 - **Docker**: 28.3.3, build 980b856
-
 
 #### Дополнительная информация
 ARENA в Open WebUI (ранее известном как Ollama WebUI) — это интерактивная платформа для тестирования, сравнения и совместной работы с различными языковыми моделями (LLM).
