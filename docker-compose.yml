@@ -10,22 +10,30 @@ services:
       - ollama_data:/root/.ollama
     environment:
       - OLLAMA_HOST=0.0.0.0:11434
+    entrypoint: ["/bin/sh", "-c"]
+    command: |
+      "
+      ollama serve &
+      sleep 10
+      ollama run deepseek-r1:1.5b
+      wait
+      "
     restart: unless-stopped
 
   litellm:
     build:
       context: .
       dockerfile: Dockerfile.litellm
+    env_file: .env
     environment:
       - HYDRA_API_KEY=${HYDRA_API_KEY}
       - HYDRA_API_BASE=${HYDRA_API_BASE}
     container_name: litellm
     ports:
-      - "8003:8000"
-    volumes:
-      - ./litellm/config.yaml:/app/config.yaml
-    working_dir: /app
-    command: ["--config", "config.yaml"]
+      - "8003:8003"
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
     depends_on:
       - ollama
     restart: unless-stopped
@@ -39,7 +47,7 @@ services:
       - open_webui_data:/app/backend/data
     environment:
       - OLLAMA_BASE_URL=http://none
-      - OPENAI_API_BASE_URL=http://litellm:8000
+      - OPENAI_API_BASE_URL=http://litellm:8003
       - OPENAI_API_KEY=any
     depends_on:
       - litellm

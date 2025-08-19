@@ -11,9 +11,13 @@
 ## Запуск сборки
 ```bash
 docker-compose up -d --build
+# or
+docker compose up -d --build
 ```
 ## Погасить сборку
 ```bash
+docker-compose down
+# or
 docker-compose down
 ```
 
@@ -120,7 +124,11 @@ Build Cache     0         0         0B        0B
 ```
 - Результат запроса (C Ollama)
 ```bash
-
+TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE
+Images          3         3         7.569GB   0B (0%)
+Containers      3         3         42.61MB   0B (0%)
+Local Volumes   2         2         3.139GB   0B (0%)
+Build Cache     35        0         1.516GB   1.516GB
 ```
 
 ## API должен быть совместим с OpenAI

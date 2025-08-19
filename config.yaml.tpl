@@ -1,5 +1,5 @@
+# config.yaml.tpl
 model_list:
-  # Ollama (локально)
   - model_name: deepseek-r1:1.5b
     litellm_params:
       model: ollama/deepseek-r1:1.5b
@@ -8,5 +8,5 @@ model_list:
   - model_name: gpt-4o-mini
     litellm_params:
       model: openai/gpt-4o-mini
-      api_key: __HYDRA_API_KEY__
-      api_base: __HYDRA_API_BASE__
+      api_key: ${HYDRA_API_KEY}
+      api_base: ${HYDRA_API_BASE}

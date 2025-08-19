@@ -1,2 +1,2 @@
-litellm==1.75.8
 openai==1.99.5
+litellm[proxy]==1.75.8
