@@ -2,7 +2,8 @@ version: '3.8'
 
 services:
   ollama:
-    image: ollama/ollama:latest
+    image: ollama/ollama
+    container_name: ollama
     ports:
       - "11434:11434"
     volumes:
@@ -12,27 +13,33 @@ services:
     restart: unless-stopped
 
   litellm:
-    image: litellm/serve:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.litellm
+    environment:
+      - HYDRA_API_KEY=${HYDRA_API_KEY}
+      - HYDRA_API_BASE=${HYDRA_API_BASE}
+    container_name: litellm
     ports:
-      - "8003:8003"
+      - "8003:8000"
     volumes:
       - ./litellm/config.yaml:/app/config.yaml
-    environment:
-      - CONFIG_PATH=/app/config.yaml
-    command: ["--config", "/app/config.yaml"]
+    working_dir: /app
+    command: ["--config", "config.yaml"]
     depends_on:
       - ollama
     restart: unless-stopped
 
   open-webui:
-    image: ghcr.io/open-webui/open-webui:lite
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: open-webui
     ports:
       - "3002:8080"
     volumes:
       - open_webui_data:/app/backend/data
     environment:
       - OLLAMA_BASE_URL=http://none
-      - OPENAI_API_BASE_URL=http://litellm:8003
+      - OPENAI_API_BASE_URL=http://litellm:8000
       - OPENAI_API_KEY=any
     depends_on:
       - litellm

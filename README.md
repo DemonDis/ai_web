@@ -7,6 +7,17 @@
 - Ollama - `http://localhost:11434`
 - LiteLLM - `http://localhost:8003`
 
+# ВАРИНАТ 1 - docker compose
+## Запуск сборки
+```bash
+docker-compose up -d --build
+```
+## Погасить сборку
+```bash
+docker-compose down
+```
+
+# ВАРИНАТ 2 - ручной/docker
 ## Настройка окружения и запуск
 Создание виртуального окружения Python
 ```bash
@@ -42,26 +53,11 @@ docker pull ghcr.io/open-webui/open-webui:main
 
 ## Запуск Open WebUI в Docker
 Необходимо подождать, запуск занимает время
-- Без OLLAMA
 ```bash
 docker run -d \
   --add-host=host.docker.internal:host-gateway \
   -p 3002:8080 \
   -e OPENAI_API_BASE_URL="http://host.docker.internal:8003" \
-  -e OPENAI_API_KEY="any" \
-  -e OLLAMA_BASE_URL=http://none \
-  -v open-webui:/app/backend/data \
-  --name open-webui \
-  --restart always \
-  ghcr.io/open-webui/open-webui:main
-```
-
-- С OLLAMA
-```bash
-docker run -d \
-  --add-host=host.docker.internal:host-gateway \
-  -p 3002:8080 \
-  -e OPENAI_API_BASE_URL="http://host.docker.internal:8000" \
   -e OPENAI_API_KEY="any" \
   -e OLLAMA_BASE_URL=http://none \
   -v open-webui:/app/backend/data \
@@ -121,6 +117,10 @@ Images          1         1         4.803GB   0B (0%)
 Containers      1         1         41.88MB   0B (0%)
 Local Volumes   1         1         1.998GB   0B (0%)
 Build Cache     0         0         0B        0B
+```
+- Результат запроса (C Ollama)
+```bash
+
 ```
 
 ## API должен быть совместим с OpenAI
